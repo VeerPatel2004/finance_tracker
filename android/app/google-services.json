@@ -1,0 +1,87 @@
+{
+  "project_info": {
+    "project_number": "678464137552",
+    "firebase_url": "https://tgamobapp-f654a-default-rtdb.firebaseio.com",
+    "project_id": "tgamobapp-f654a",
+    "storage_bucket": "tgamobapp-f654a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678464137552:android:09fa3cc50738f2e369e455",
+        "android_client_info": {
+          "package_name": "com.example.finance_tracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAU5a77UH5qkj0IDqtBRZ9H2WbxCdHoz2Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678464137552:android:6403dbf0bd61f21e69e455",
+        "android_client_info": {
+          "package_name": "com.example.tga_tracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAU5a77UH5qkj0IDqtBRZ9H2WbxCdHoz2Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678464137552:android:5ce74a2e9682c71269e455",
+        "android_client_info": {
+          "package_name": "com.example.tga_tracker.tga"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAU5a77UH5qkj0IDqtBRZ9H2WbxCdHoz2Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678464137552:android:f6924a14fdd85ff369e455",
+        "android_client_info": {
+          "package_name": "com.example.tga_tracker.tga_tracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAU5a77UH5qkj0IDqtBRZ9H2WbxCdHoz2Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
