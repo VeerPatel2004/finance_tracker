@@ -13,7 +13,20 @@
           "package_name": "com.example.finance_tracker"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "678464137552-2mrqbdb7sfnc2j6anlot872dmu456muf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.finance_tracker",
+            "certificate_hash": "4aed60b633411ce5bc17bb606fecfc8596abb06d"
+          }
+        },
+        {
+          "client_id": "678464137552-3q8ddcg2e2qibjt9u806k6gu3qfbuduq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAU5a77UH5qkj0IDqtBRZ9H2WbxCdHoz2Y"
@@ -21,7 +34,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "678464137552-3q8ddcg2e2qibjt9u806k6gu3qfbuduq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "678464137552-11l8d395barorve8fdcq5s6on2aluvk4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tgatracker.tgaTracker"
+              }
+            }
+          ]
         }
       }
     },
@@ -32,7 +57,12 @@
           "package_name": "com.example.tga_tracker"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "678464137552-3q8ddcg2e2qibjt9u806k6gu3qfbuduq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAU5a77UH5qkj0IDqtBRZ9H2WbxCdHoz2Y"
@@ -40,7 +70,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "678464137552-3q8ddcg2e2qibjt9u806k6gu3qfbuduq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "678464137552-11l8d395barorve8fdcq5s6on2aluvk4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tgatracker.tgaTracker"
+              }
+            }
+          ]
         }
       }
     },
@@ -51,7 +93,12 @@
           "package_name": "com.example.tga_tracker.tga"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "678464137552-3q8ddcg2e2qibjt9u806k6gu3qfbuduq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAU5a77UH5qkj0IDqtBRZ9H2WbxCdHoz2Y"
@@ -59,7 +106,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "678464137552-3q8ddcg2e2qibjt9u806k6gu3qfbuduq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "678464137552-11l8d395barorve8fdcq5s6on2aluvk4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tgatracker.tgaTracker"
+              }
+            }
+          ]
         }
       }
     },
@@ -70,7 +129,12 @@
           "package_name": "com.example.tga_tracker.tga_tracker"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "678464137552-3q8ddcg2e2qibjt9u806k6gu3qfbuduq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAU5a77UH5qkj0IDqtBRZ9H2WbxCdHoz2Y"
@@ -78,7 +142,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "678464137552-3q8ddcg2e2qibjt9u806k6gu3qfbuduq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "678464137552-11l8d395barorve8fdcq5s6on2aluvk4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tgatracker.tgaTracker"
+              }
+            }
+          ]
         }
       }
     }

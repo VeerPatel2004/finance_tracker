@@ -17,7 +17,9 @@ class _LoginScreenState extends State<LoginScreen> {
       emailController.text,
       passwordController.text,
     );
+
     if (user != null) {
+      // ✅ Navigate to Dashboard after successful login
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => DashboardScreen()),
