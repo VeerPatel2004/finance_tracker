@@ -1,15 +1,3 @@
-// import 'package:flutter/material.dart';
-
-// class SettingsScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: Text("Settings")),
-//       body: Center(child: Text("Settings Page")),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
 import 'package:finance_tracker/screens/profile/profile_screen.dart';
 
@@ -17,6 +5,8 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Fixes top white space issue
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -27,6 +17,7 @@ class SettingsScreen extends StatelessWidget {
         ),
       ),
       body: Container(
+        width: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [Color(0xFF00C9FF), Color(0xFFB721FF)],
