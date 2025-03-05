@@ -1,5 +1,7 @@
-import 'package:finance_tracker/theme/payment_Page/payment_theme.dart';
+import 'package:finance_tracker/screens/payment/widgets/add_payment_modal.dart';
 import 'package:flutter/material.dart';
+import 'package:finance_tracker/data/services/payment_service.dart';
+import 'package:finance_tracker/screens/payment/widgets/add_card_modal.dart';
 
 class PaymentScreen extends StatefulWidget {
   @override
@@ -7,104 +9,90 @@ class PaymentScreen extends StatefulWidget {
 }
 
 class _PaymentScreenState extends State<PaymentScreen> {
-  List<Map<String, String>> storedCards = [
-    {"cardNumber": "**** **** **** 1234", "expiry": "07/26"},
-    {"cardNumber": "**** **** **** 5678", "expiry": "12/25"},
-  ];
-
-  String lastPayment = "\$250.00 on 10th March 2024";
-
-  void _addNewCard() {
-    setState(() {
-      storedCards.add({"cardNumber": "**** **** **** 9876", "expiry": "09/27"});
-    });
-  }
-
-  void _removeCard(int index) {
-    setState(() {
-      storedCards.removeAt(index);
-    });
-  }
+  final PaymentService _paymentService = PaymentService();
+  String? selectedMethod;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black, // Dark UI
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
         title: const Text(
-          "Payments",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          "Payment Method",
+          style: TextStyle(color: Colors.white),
         ),
+        backgroundColor: Colors.black,
+        elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
-      backgroundColor: PaymentTheme.backgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Last Payment Details
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              elevation: 3,
-              child: ListTile(
-                leading: const Icon(
-                  Icons.history,
-                  color: PaymentTheme.primaryColor,
-                ),
-                title: Text("Last Payment", style: PaymentTheme.titleStyle),
-                subtitle: Text(lastPayment, style: PaymentTheme.subtitleStyle),
-              ),
-            ),
-            const SizedBox(height: 20),
-
-            // Stored Cards List
-            Text("Saved Cards", style: PaymentTheme.titleStyle),
-            const SizedBox(height: 10),
             Expanded(
-              child: ListView.builder(
-                itemCount: storedCards.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    margin: const EdgeInsets.symmetric(vertical: 5),
-                    decoration: PaymentTheme.cardDecoration,
-                    child: ListTile(
-                      leading: const Icon(
-                        Icons.credit_card,
-                        color: Colors.black,
-                      ),
-                      title: Text(storedCards[index]["cardNumber"]!),
-                      subtitle: Text(
-                        "Expiry: ${storedCards[index]["expiry"]}",
-                        style: PaymentTheme.subtitleStyle,
-                      ),
-                      trailing: IconButton(
-                        icon: const Icon(Icons.delete, color: Colors.red),
-                        onPressed: () => _removeCard(index),
-                      ),
-                    ),
+              child: StreamBuilder(
+                stream: _paymentService.getStoredCards(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
+                  var cards = snapshot.data!.docs;
+                  if (cards.isEmpty) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "No saved cards",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        const SizedBox(height: 10),
+                        ElevatedButton(
+                          onPressed: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder:
+                                  (context) => AddCardModal(
+                                    paymentService: _paymentService,
+                                  ),
+                            );
+                          },
+                          child: const Text("Add a Card"),
+                        ),
+                      ],
+                    );
+                  }
+
+                  return ListView.builder(
+                    itemCount: cards.length,
+                    itemBuilder: (context, index) {
+                      var card = cards[index];
+                      return PaymentCard(
+                        cardData: card,
+                        isSelected: selectedMethod == card.id,
+                        onSelect: () {
+                          setState(() {
+                            selectedMethod = card.id;
+                          });
+                        },
+                      );
+                    },
                   );
                 },
               ),
             ),
-
-            // Add Card Button
-            Center(
-              child: ElevatedButton.icon(
-                style: PaymentTheme.buttonStyle,
-                onPressed: _addNewCard,
-                icon: const Icon(Icons.add, color: Colors.white),
-                label: const Text(
-                  "Add New Card",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (context) => AddCardModal(paymentService: _paymentService),
+          );
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }
