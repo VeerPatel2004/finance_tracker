@@ -1,37 +1,3 @@
-// import 'package:firebase_auth/firebase_auth.dart';
-
-// class AuthService {
-//   final FirebaseAuth _auth = FirebaseAuth.instance;
-
-//   Future<User?> signIn(String email, String password) async {
-//     try {
-//       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-//         email: email,
-//         password: password,
-//       );
-//       return userCredential.user;
-//     } catch (e) {
-//       print(e);
-//       return null;
-//     }
-//   }
-
-//   Future<User?> signUp(String email, String password) async {
-//     try {
-//       UserCredential userCredential = await _auth
-//           .createUserWithEmailAndPassword(email: email, password: password);
-//       return userCredential.user;
-//     } catch (e) {
-//       print(e);
-//       return null;
-//     }
-//   }
-
-//   Future<void> signOut() async {
-//     await _auth.signOut();
-//   }
-// }
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -39,12 +5,12 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  // ✅ Get Current User
+  // Get Current User
   User? getCurrentUser() {
     return _auth.currentUser;
   }
 
-  // ✅ Sign In (Login)
+  // Sign In (Login)
   Future<User?> signIn(String email, String password) async {
     try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
@@ -59,7 +25,7 @@ class AuthService {
     }
   }
 
-  // ✅ Sign Up (Register)
+  // Sign Up (Register)
   Future<User?> signUp(String name, String email, String password) async {
     try {
       UserCredential userCredential = await _auth
@@ -67,7 +33,7 @@ class AuthService {
 
       User? user = userCredential.user;
       if (user != null) {
-        // ✅ Store user details in Firestore
+        // Store user details in Firestore
         await _firestore.collection("users").doc(user.uid).set({
           "name": name,
           "email": email,
@@ -82,7 +48,7 @@ class AuthService {
     }
   }
 
-  // ✅ Logout User
+  // Logout User
   Future<void> signOut() async {
     try {
       await _auth.signOut();
@@ -91,7 +57,7 @@ class AuthService {
     }
   }
 
-  // ✅ Delete User Account
+  // Delete User Account
   Future<void> deleteUserAccount() async {
     try {
       User? user = _auth.currentUser;
@@ -104,7 +70,7 @@ class AuthService {
     }
   }
 
-  // ✅ Listen for Authentication State Changes
+  // Listen for Authentication State Changes
   Stream<User?> authStateChanges() {
     return _auth.authStateChanges();
   }

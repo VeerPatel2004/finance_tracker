@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:finance_tracker/theme/Home_page/home_screen_theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:finance_tracker/data/services/transaction_service.dart';
 import 'package:finance_tracker/screens/profile/profile_screen.dart';
@@ -16,7 +17,7 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Column(
           children: [
-            // User Info
+            // **User Info**
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -33,19 +34,11 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         const Text(
                           "Welcome",
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.grey,
-                          ),
+                          style: HomeScreenTheme.welcomeText,
                         ),
                         Text(
                           _auth.currentUser?.displayName ?? "User",
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
+                          style: HomeScreenTheme.userNameText,
                         ),
                       ],
                     ),
@@ -64,13 +57,11 @@ class HomeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
 
-            // Dynamic Balance Card
+            // **Balance Card**
             StreamBuilder(
               stream: transactionService.getTransactions(),
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (!snapshot.hasData) {
-                  return _buildBalanceCard(0, 0, 0);
-                }
+                if (!snapshot.hasData) return _buildBalanceCard(0, 0, 0);
 
                 var transactions = snapshot.data!.docs;
                 double income = 0;
@@ -90,7 +81,7 @@ class HomeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 30),
 
-            // Transactions Header
+            // **Transactions Header**
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -109,19 +100,17 @@ class HomeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
 
-            // Transactions List
+            // **Transactions List**
             Expanded(
               child: StreamBuilder(
                 stream: transactionService.getTransactions(),
                 builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                  if (!snapshot.hasData) {
+                  if (!snapshot.hasData)
                     return const Center(child: CircularProgressIndicator());
-                  }
 
                   var transactions = snapshot.data!.docs;
-                  if (transactions.isEmpty) {
+                  if (transactions.isEmpty)
                     return const Center(child: Text("No transactions found"));
-                  }
 
                   return ListView.builder(
                     itemCount: transactions.length,
@@ -140,10 +129,7 @@ class HomeScreen extends StatelessWidget {
                           horizontal: 15,
                           vertical: 10,
                         ),
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade100,
-                          borderRadius: BorderRadius.circular(15),
-                        ),
+                        decoration: HomeScreenTheme.transactionBoxDecoration,
                         child: Row(
                           children: [
                             CircleAvatar(
@@ -161,17 +147,12 @@ class HomeScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   category,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  style:
+                                      HomeScreenTheme.transactionCategoryText,
                                 ),
                                 Text(
                                   date,
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey,
-                                  ),
+                                  style: HomeScreenTheme.transactionDateText,
                                 ),
                               ],
                             ),
@@ -180,10 +161,8 @@ class HomeScreen extends StatelessWidget {
                               amount >= 0
                                   ? "+\$${amount.toStringAsFixed(2)}"
                                   : "-\$${(-amount).toStringAsFixed(2)}",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: amount >= 0 ? Colors.green : Colors.red,
+                              style: HomeScreenTheme.transactionAmountText(
+                                amount,
                               ),
                             ),
                           ],
@@ -200,19 +179,12 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  /// **🔥 Balance Card**
+  /// **Balance Card**
   Widget _buildBalanceCard(double balance, double income, double expense) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [Color(0xFF64B5F6), Color(0xFFFF4081)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(20),
-      ),
+      decoration: HomeScreenTheme.balanceCardDecoration,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -220,11 +192,7 @@ class HomeScreen extends StatelessWidget {
           const SizedBox(height: 5),
           Text(
             "\$ ${balance.toStringAsFixed(2)}",
-            style: const TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
+            style: HomeScreenTheme.balanceText,
           ),
         ],
       ),
