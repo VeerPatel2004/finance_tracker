@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Column(
           children: [
-            // **User Info**
+            // User Info
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -81,7 +81,7 @@ class HomeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 30),
 
-            // **Transactions Header**
+            // Transactions Header
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -100,7 +100,7 @@ class HomeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
 
-            // **Transactions List**
+            // Transactions List
             Expanded(
               child: StreamBuilder(
                 stream: transactionService.getTransactions(),
@@ -179,7 +179,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  /// **Balance Card**
+  /// Balance Card
   Widget _buildBalanceCard(double balance, double income, double expense) {
     return Container(
       width: double.infinity,
