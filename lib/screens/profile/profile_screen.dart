@@ -161,7 +161,7 @@ class ProfileScreen extends StatelessWidget {
                     Navigator.pushNamedAndRemoveUntil(
                       context,
                       "/login",
-                      (route) => false, // ✅ Removes all previous screens
+                      (route) => false,
                     );
                   },
                   child: const Row(
@@ -181,7 +181,7 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  /// 🔥 **Fix Timestamp Conversion**
+  /// **Fix Timestamp Conversion**
   String _formatTimestamp(dynamic timestamp) {
     if (timestamp is Timestamp) {
       DateTime dateTime = timestamp.toDate();

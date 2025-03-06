@@ -57,7 +57,7 @@ class StatsScreen extends StatelessWidget {
     );
   }
 
-  /// **🔥 Group transactions by day and category**
+  /// **Group transactions by day and category**
   Map<int, Map<String, double>> _groupTransactionsByDay(
     List<QueryDocumentSnapshot> transactions,
   ) {
