@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'widgets/profile_card.dart';
+import 'widgets/profile_option.dart';
+import 'widgets/logout_button.dart';
 
 class ProfileScreen extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -14,7 +17,6 @@ class ProfileScreen extends StatelessWidget {
         await _firestore.collection('users').doc(user.uid).get();
 
     if (!userDoc.exists) return null;
-
     return userDoc.data() as Map<String, dynamic>;
   }
 
@@ -60,119 +62,43 @@ class ProfileScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Profile Card
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 30),
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 8,
-                        spreadRadius: 2,
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    children: [
-                      const Icon(Icons.person, size: 50, color: Colors.black),
-                      const SizedBox(height: 10),
-                      Text(
-                        userName,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        email,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        "Joined on: $joinDate",
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
+                ProfileCard(
+                  userName: userName,
+                  email: email,
+                  joinDate: joinDate,
                 ),
                 const SizedBox(height: 30),
 
-                // Profile Options List
-                _buildProfileOption(
+                //Profile Options
+                ProfileOption(
                   icon: Icons.edit,
                   text: "Edit Profile",
-                  onTap: () {
-                    Navigator.pushNamed(context, "/editProfile");
-                  },
+                  onTap: () => Navigator.pushNamed(context, "/editProfile"),
                 ),
-                _buildProfileOption(
+                ProfileOption(
                   icon: Icons.lock,
                   text: "Change Password",
-                  onTap: () {
-                    Navigator.pushNamed(context, "/changePassword");
-                  },
+                  onTap: () => Navigator.pushNamed(context, "/changePassword"),
                 ),
-                _buildProfileOption(
+                ProfileOption(
                   icon: Icons.privacy_tip,
                   text: "Privacy Settings",
-                  onTap: () {
-                    Navigator.pushNamed(context, "/privacySettings");
-                  },
+                  onTap: () => Navigator.pushNamed(context, "/privacySettings"),
                 ),
-                _buildProfileOption(
+                ProfileOption(
                   icon: Icons.settings,
                   text: "App Settings",
-                  onTap: () {
-                    Navigator.pushNamed(context, "/appSettings");
-                  },
+                  onTap: () => Navigator.pushNamed(context, "/appSettings"),
                 ),
-                _buildProfileOption(
+                ProfileOption(
                   icon: Icons.help_outline,
                   text: "Help & Support",
-                  onTap: () {
-                    Navigator.pushNamed(context, "/helpSupport");
-                  },
+                  onTap: () => Navigator.pushNamed(context, "/helpSupport"),
                 ),
                 const SizedBox(height: 20),
 
                 // Logout Button
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 40,
-                      vertical: 12,
-                    ),
-                  ),
-                  onPressed: () async {
-                    await _auth.signOut();
-                    Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      "/login",
-                      (route) => false,
-                    );
-                  },
-                  child: const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.logout, color: Colors.white),
-                      SizedBox(width: 8),
-                      Text("Logout", style: TextStyle(color: Colors.white)),
-                    ],
-                  ),
-                ),
+                const LogoutButton(),
               ],
             ),
           );
@@ -181,46 +107,12 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  /// **Fix Timestamp Conversion**
+  //Timestamp Conversion
   String _formatTimestamp(dynamic timestamp) {
     if (timestamp is Timestamp) {
       DateTime dateTime = timestamp.toDate();
       return "${dateTime.day}/${dateTime.month}/${dateTime.year}";
     }
     return "Unknown Date";
-  }
-
-  /// Reusable Profile Option Widget
-  Widget _buildProfileOption({
-    required IconData icon,
-    required String text,
-    required VoidCallback onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
-        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: [
-            BoxShadow(color: Colors.black12, blurRadius: 5, spreadRadius: 1),
-          ],
-        ),
-        child: Row(
-          children: [
-            Icon(icon, color: Colors.black),
-            const SizedBox(width: 15),
-            Text(
-              text,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            const Spacer(),
-            const Icon(Icons.arrow_forward_ios, size: 18, color: Colors.grey),
-          ],
-        ),
-      ),
-    );
   }
 }
