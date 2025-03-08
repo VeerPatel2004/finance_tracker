@@ -57,7 +57,7 @@ class HomeScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
 
-            // **Balance Card**
+            // Balance Card
             StreamBuilder(
               stream: transactionService.getTransactions(),
               builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {

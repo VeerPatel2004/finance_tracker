@@ -103,7 +103,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               ),
               const SizedBox(height: 20),
 
-              /// Buttons
+              // Buttons
               AddCardButton(onPressed: _showAddCardDialog),
               const SizedBox(height: 10),
               PayNowButton(
@@ -116,7 +116,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         ),
       ),
 
-      /// Floating Action Button
+      // Floating Action Button
       floatingActionButton: FloatingActionButton(
         heroTag: "add_card_fab",
         backgroundColor: Colors.purpleAccent,

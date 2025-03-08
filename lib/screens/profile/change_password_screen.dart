@@ -40,7 +40,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     } catch (e) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text("❌ Error: ${e.toString()}")));
+      ).showSnackBar(SnackBar(content: Text(" Error: ${e.toString()}")));
     }
 
     setState(() => _isLoading = false);

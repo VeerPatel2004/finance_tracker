@@ -57,7 +57,7 @@ class StatsScreen extends StatelessWidget {
     );
   }
 
-  /// **Group transactions by day and category**
+  /// Group transactions by day and category
   Map<int, Map<String, double>> _groupTransactionsByDay(
     List<QueryDocumentSnapshot> transactions,
   ) {
@@ -87,7 +87,7 @@ class StatsScreen extends StatelessWidget {
     return groupedData;
   }
 
-  /// **Dynamically Calculate Max Y-Axis Value**
+  // Dynamically Calculate Max Y-Axis Value
   double _getMaxYValue(Map<int, Map<String, double>> groupedData) {
     double maxValue = 0;
 
@@ -101,7 +101,7 @@ class StatsScreen extends StatelessWidget {
     return maxValue;
   }
 
-  /// ** Bar Chart Data (Stacked Categories)**
+  // Bar Chart Data Stacked Categories
   List<BarChartGroupData> _getBarGroups(
     Map<int, Map<String, double>> groupedData,
   ) {
@@ -135,7 +135,7 @@ class StatsScreen extends StatelessWidget {
     });
   }
 
-  /// **Configure X & Y Axis Labels**
+  //Configure X & Y Axis Labels
   FlTitlesData _getTitles() {
     return FlTitlesData(
       leftTitles: AxisTitles(
