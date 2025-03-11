@@ -5,7 +5,7 @@ import 'package:finance_tracker/screens/payment/widgets/add_card_modal.dart';
 import 'package:finance_tracker/screens/payment/widgets/pay_now_button.dart';
 import 'package:finance_tracker/screens/payment/widgets/no_saved_cards.dart';
 import 'package:finance_tracker/screens/payment/widgets/add_card_button.dart';
-
+// screen for the payment screen
 class PaymentScreen extends StatefulWidget {
   @override
   _PaymentScreenState createState() => _PaymentScreenState();
