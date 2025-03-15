@@ -14,7 +14,7 @@ class HomeScreenTheme {
     color: Colors.black,
   );
 
-  // **Balance Card Style**
+  // Balance Card Style
   static BoxDecoration balanceCardDecoration = BoxDecoration(
     gradient: const LinearGradient(
       colors: [Color(0xFF64B5F6), Color(0xFFFF4081)],
@@ -30,7 +30,7 @@ class HomeScreenTheme {
     color: Colors.white,
   );
 
-  // **Transaction List Item**
+  // Transaction List Item
   static BoxDecoration transactionBoxDecoration = BoxDecoration(
     color: Colors.grey.shade100,
     borderRadius: BorderRadius.circular(15),
