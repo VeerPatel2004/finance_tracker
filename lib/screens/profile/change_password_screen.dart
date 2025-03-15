@@ -34,7 +34,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       await user?.updatePassword(_newPasswordController.text.trim());
 
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("✅ Password updated successfully!")),
+        const SnackBar(content: Text(" Password updated successfully!")),
       );
       Navigator.pop(context);
     } catch (e) {
