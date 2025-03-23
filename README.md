@@ -82,6 +82,10 @@ This project is licensed under the **Apache License**.
 
 ---
 
+### 📜 License Choice Explanation
+I chose the Apache License because it allows others to freely use and modify the project while ensuring proper attribution and preventing the use of my trademarks. It also protects contributors from legal liability.
+
+
 ## **🌟 Support & Feedback**
 Have suggestions or need help?  
 📧 **Email:** darsansabu09@gmail.com  
@@ -89,4 +93,3 @@ Have suggestions or need help?
 ---
 
 🚀 **Finance Tracker – Take Control of Your Finances Today!** 🎯
-hello test 1
